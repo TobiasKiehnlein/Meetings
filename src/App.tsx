@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import {add, cog, ellipse, people, square, triangle} from 'ionicons/icons';
+import {add, cog, people} from 'ionicons/icons';
 import Meetings from './pages/Meetings';
 import Settings from './pages/Settings';
 /* Core CSS required for Ionic components to work properly */

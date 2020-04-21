@@ -92,11 +92,9 @@ const Settings: React.FC = () => {
                     <IonLabel position="floating">Import Json</IonLabel>
                     <IonInput value={json} onIonChange={e => setJson(e.detail.value || "")} type="url"/>
                 </IonItem>
-                <IonItem>
-                    <IonButton expand="block" className="ion-margin"
-                               onClick={() => json !== "" ? setImportAlert(true) : setToast("Please add JSON into the input field!")}>Import
-                        JSON</IonButton>
-                </IonItem>
+                <IonButton expand="block" className="ion-margin"
+                           onClick={() => json !== "" ? setImportAlert(true) : setToast("Please add JSON into the input field!")}>Import
+                    JSON</IonButton>
                 <IonAlert
                     isOpen={importAlert}
                     onDidDismiss={() => setImportAlert(false)}
