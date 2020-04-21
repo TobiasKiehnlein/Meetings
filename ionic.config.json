@@ -1,0 +1,7 @@
+{
+  "name": "Meetings",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
