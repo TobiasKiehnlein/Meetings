@@ -85,7 +85,7 @@ const Settings: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <IonButton className="ion-margin" onClick={exportJson}>Export JSON</IonButton>
+                <IonButton className="ion-margin" onClick={exportJson} expand="block">Export JSON</IonButton>
                 <IonItem>
                     <IonLabel position="floating">Import Json</IonLabel>
                     <IonInput value={json} onIonChange={e => setJson(e.detail.value || "")} type="url"/>
