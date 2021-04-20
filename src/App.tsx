@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { add, cog, people } from 'ionicons/icons';
+import firebase from 'firebase/app';
 import Meetings from './pages/Meetings';
 import Settings from './pages/Settings';
 /* Core CSS required for Ionic components to work properly */
@@ -22,9 +23,14 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Add from './pages/Add';
 import Login from './pages/Login';
+import { firebaseConfig } from './firebase-config';
 
-const App: React.FC = () => (
-	<IonApp>
+const App: React.FC = () => {
+	useEffect(() => {
+		firebase.initializeApp(firebaseConfig);
+	}, []);
+	
+	return <IonApp>
 		<IonReactRouter>
 			<IonTabs>
 				<IonRouterOutlet>
@@ -50,7 +56,7 @@ const App: React.FC = () => (
 				</IonTabBar>
 			</IonTabs>
 		</IonReactRouter>
-	</IonApp>
-);
+	</IonApp>;
+};
 
 export default App;

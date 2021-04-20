@@ -1,4 +1,8 @@
+import firebase from 'firebase';
+
 export default interface Meeting {
-    name: string,
-    url: string
+	id?: string;
+	name: string;
+	url: string;
+	time?: firebase.firestore.Timestamp
 }

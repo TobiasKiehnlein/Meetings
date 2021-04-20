@@ -8,6 +8,12 @@ ion-card-header.icon {
   padding-top: 0;
 }
 
+ion-card {
+  @media (prefers-color-scheme: dark) {
+    background: var(--ion-color-light);
+  }
+}
+
 #icons {
   position: relative;
 

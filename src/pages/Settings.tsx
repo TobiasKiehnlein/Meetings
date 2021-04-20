@@ -3,6 +3,9 @@ import { IonAlert, IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel
 import { Plugins } from '@capacitor/core';
 import { MEETINGS } from '../CONSTANTS';
 import Meeting from '../Interfaces/Meeting';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 const { Storage } = Plugins;
 
@@ -11,8 +14,10 @@ const Settings: React.FC = () => {
 	const [ toast, setToast ] = useState('');
 	const [ json, setJson ] = useState('');
 	const [ importAlert, setImportAlert ] = useState(false);
+	const [ user, setUser ] = useState<firebase.User | null>();
 	
 	useEffect(() => {
+		firebase.auth().onAuthStateChanged(setUser);
 		Storage.get({ key: MEETINGS }).then(currentMeetings => {
 			const currentMeetingsString: string | null = currentMeetings.value;
 			setMeetings(currentMeetingsString);
@@ -94,12 +99,19 @@ const Settings: React.FC = () => {
 					<IonLabel>Export data?</IonLabel>
 					<IonButton slot="end" className="ion-margin" onClick={ exportJson }>Export JSON</IonButton>
 				</IonItem>
-				<IonItem>
-					<IonLabel>Want to store and sync data online?</IonLabel>
-					<IonButton className="ion-margin" routerLink={ '/Login' }>
-						Login
-					</IonButton>
-				</IonItem>
+				{ user ?
+					<IonItem>
+						<IonLabel>Don't want to be logged in anymore?</IonLabel>
+						<IonButton className="ion-margin" routerLink={ '/Login' }>
+							Logout
+						</IonButton>
+					</IonItem> :
+					<IonItem>
+						<IonLabel>Want to store and sync data online?</IonLabel>
+						<IonButton className="ion-margin" routerLink={ '/Login' }>
+							Login
+						</IonButton>
+					</IonItem> }
 				<IonAlert
 					isOpen={ importAlert }
 					onDidDismiss={ () => setImportAlert(false) }
